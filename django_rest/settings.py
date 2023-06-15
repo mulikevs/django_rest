@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'BlogPost.app.BlogpostConfig'
+    'BlogPost.apps.BlogpostConfig'
 ]
 
 CORS_ORIGIN_ALLOW_ALL =True
@@ -78,12 +79,17 @@ WSGI_APPLICATION = 'django_rest.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+import pymysql
+pymysql.install_as_MySQLdb()
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+       'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'my_blog_post',
+        'USER':'root',
+        'PASSWORD':'mysql',
+        'HOST':'127.0.0.1',
+        'PORT':'3306'
+       }
 }
 
 
